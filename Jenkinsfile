@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Docker  ') {
             steps {
-                powershell 'docker images -a'
+                sh 'docker images -a'
             }
         }
     }
