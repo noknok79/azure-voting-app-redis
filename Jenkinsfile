@@ -30,6 +30,7 @@ pipeline {
                 }
                 failure {
                     echo 'App failed to start'
+                    sh '''docker-compose down'''
                 }
             }
         }
