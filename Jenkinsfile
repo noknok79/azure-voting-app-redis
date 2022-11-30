@@ -47,6 +47,7 @@ pipeline {
         stage('Push Container  ') {
             steps {
                 echo "Workspace is $WORKSPACE"
+                sh '''docker images -a'''
 		        dir('$WORKSPACE/azure-vote') {
                    script {
                       docker.withRegistry('https://index.docker.io/v1/', 'DockerHub') {
