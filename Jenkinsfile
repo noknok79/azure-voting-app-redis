@@ -51,7 +51,7 @@ pipeline {
 		        dir('$WORKSPACE/azure-vote') {
                    script {
                       docker.withRegistry('https://index.docker.io/v1/', 'DockerHub') {
-                         def image = docker.build('azure-vote/Dockerfile')
+                         def image = docker.build('noknok79/jenkins-test:${d4b91f1025bc}')
                          image.push()  
                       }                   
                    }
