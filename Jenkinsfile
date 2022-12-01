@@ -44,18 +44,12 @@ pipeline {
                 sh '''docker-compose down'''
             }
         }
-        stage('Push Container  ') {
+        stage('Push to Docker Hub  ') {
             steps {
-                echo "Workspace is $WORKSPACE"
-                sh '''docker images -a'''
-		        dir('$WORKSPACE/azure-vote') {
-                   script {
-                      docker.withRegistry('https://index.docker.io/v1/', 'DockerHub') {
-                         def image = docker.build('noknok79/jenkins-test:${d4b91f1025bc}')
-                         image.push()  
-                      }                   
-                   }
-                }
+                sh '''docker login -u $DOCKER_USER -p $DOCKER_PASS
+                docker tag azure-vote-front $DOCKER_USER/azure-vote-front
+                docker push $DOCKER_USER/azure-vote-front
+                docker logout'''
             }
         }
     }
