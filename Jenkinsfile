@@ -46,9 +46,9 @@ pipeline {
         }
         stage('Push to Docker Hub  ') {
             steps {
-                sh '''docker login -u $DOCKER_USER -p $DOCKER_PASS
-                docker tag azure-vote-front $DOCKER_USER/azure-vote-front
-                docker push $DOCKER_USER/azure-vote-front
+                sh '''
+                docker tag azure-vote-front noknok79/azure-vote-front
+                docker push noknok79/azure-vote-front
                 docker logout'''
             }
         }
